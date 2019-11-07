@@ -1,0 +1,12 @@
+{
+  "name": "discord-svg",
+  "version": "1.0.0",
+  "description": "get svg emojis by unicode code from Discord api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ghom",
+  "license": "ISC",
+  "dependencies": {}
+}
