@@ -83,7 +83,7 @@ function extract(resolvable){
 }
 
 resolve.count   = emojis.length // return size of emoji array
-resolve.emojis  = emojis        // return all discord emojis
+resolve.list    = emojis        // return all discord emojis
 resolve.get     = get           // get emoji by ID (1...1600+)
 resolve.has     = has           // check if emoji exist
 resolve.find    = find          // get first emojis found from string compare to all emoji props

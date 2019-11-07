@@ -1,5 +1,5 @@
 {
-  "name": "discord-svg",
+  "name": "discord-unicodes",
   "version": "1.0.0",
   "description": "get svg emojis by unicode code from Discord api",
   "main": "index.js",
@@ -8,5 +8,23 @@
   },
   "author": "ghom",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CamilleAbella/DiscordUnicodes.git"
+  },
+  "keywords": [
+    "unicode",
+    "emoji",
+    "discord.js",
+    "discord",
+    "parser",
+    "parse",
+    "parsing",
+    "text"
+  ],
+  "bugs": {
+    "url": "https://github.com/CamilleAbella/DiscordUnicodes/issues"
+  },
+  "homepage": "https://github.com/CamilleAbella/DiscordUnicodes#readme"
 }
