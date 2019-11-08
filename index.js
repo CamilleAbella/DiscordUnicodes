@@ -17,7 +17,7 @@ function resolve(resolvable){
     if(type == 'string')                return find(resolvable)
     if(type == 'number')                return get(resolvable)
     if(resolvable instanceof RegExp)    return search(resolvable)
-
+    return false
 }
 
 function get(resolvable){
@@ -54,9 +54,10 @@ function extract(resolvable){
     let string = lockType(resolvable,'string')
     result = []
     for(i=0; i<string.length; i++){
-        for(emoji of emojis){
+        for(let emoji of emojis){
             const mention = ':'+emoji.name+':'
-            if(string.slice(i).startsWith(emoji.unicode)){
+            const regex = new RegExp('^'+emoji.charcode,'u')
+            if(regex.test(string.slice(i))){
                 const end = i + emoji.unicode.length
                 result.push({
                     matchType : 'unicode',
@@ -66,7 +67,7 @@ function extract(resolvable){
                     emoji : emoji
                 })
                 i = end
-            }else if(string.startsWith(mention)){
+            }else if(string.slice(i).startsWith(mention)){
                 const end = i + mention.length
                 result.push({
                     matchType : 'mention',
