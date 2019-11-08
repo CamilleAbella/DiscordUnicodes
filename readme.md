@@ -19,8 +19,9 @@ ouput:
     {
         "name": "nerd",
         "charcode": "\\uD83E\\uDD13",
-        "url": "https://discordapp.com/assets/e694b29603bee9f93dea4cad64502a38.svg",
-        "unicode": "🤓"
+        "unicode": "🤓",
+        "png": "https://res.cloudinary.com/les-laboratoires-js/image/upload/nerd.png",
+        "svg": "https://discordapp.com/assets/e694b29603bee9f93dea4cad64502a38.svg"
     }
 ]
 ```
