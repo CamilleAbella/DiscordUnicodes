@@ -8,10 +8,7 @@
   },
   "author": "ghom",
   "license": "ISC",
-  "dependencies": {
-    "got": "^9.6.0",
-    "request": "^2.88.0"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CamilleAbella/DiscordUnicodes.git"
