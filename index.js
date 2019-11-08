@@ -1,57 +1,53 @@
 
 const emojis = require('./emojis.json')
 
-function lockType(resolvable,type){
-    if(typeof resolvable != type)
-    throw TypeError('resolvable argument must be a '+type)
-    return resolvable
-}
-function lockInstance(resolvable,_class){
-    if(resolvable instanceof _class){
-        return resolvable
-    }   throw TypeError('resolvable must be '+_class.name)
-}
-
 function resolve(resolvable){
-    const type = typeof resolvable
-    if(type == 'string')                return find(resolvable)
-    if(type == 'number')                return get(resolvable)
-    if(resolvable instanceof RegExp)    return search(resolvable)
-    return false
+    return matchAll(resolvable)
 }
 
-function get(resolvable){
-    const num = lockType(resolvable,'number')
-    return emojis[num]
-}
-
-function has(resolvable){
-    const string = lockType(resolvable,'string')
-    return emojis.some(emoji => (
-        emoji.name == string ||
-        emoji.charcode == string ||
-        emoji.unicode == string ||
-        emoji.url == "https://discordapp.com/assets/"+string+".svg"
-    ))
-}
-
-function find(resolvable){
-    const string = lockType(resolvable,'string').toLowerCase()
+function get(string){
     return emojis.find(emoji => (
         emoji.name == string ||
         emoji.charcode == string ||
-        emoji.unicode == string ||
-        emoji.url == "https://discordapp.com/assets/"+string+".svg"
+        emoji.unicode == string
     ))
 }
 
-function search(resolvable){
-    const regex = lockInstance(resolvable,RegExp)
-    return emojis.filter(emoji => regex.test(emoji.name))
+function has(string){
+    return emojis.some(emoji => (
+        emoji.name == string ||
+        emoji.charcode == string ||
+        emoji.unicode == string
+    ))
 }
 
-function extract(resolvable){
-    let string = lockType(resolvable,'string')
+function match(resolvable){
+    if(typeof resolvable == 'string') return emojis.get(resolvable)
+    if(resolvable instanceof RegExp) return emojis.find(emoji => resolvable.test(emoji.name))
+    switch(typeof resolvable){
+        case 'function' :
+        case 'asyncFunction' :
+        case 'arrowFunction' :
+        return emojis.find(resolvable)
+    }
+}
+
+function matchAll(regex){
+    if(typeof resolvable == 'string') return emojis.filter(emoji => (
+        emoji.name == resolvable ||
+        emoji.charcode == resolvable ||
+        emoji.unicode == resolvable
+    ))
+    if(resolvable instanceof RegExp) return emojis.filter(emoji => resolvable.test(emoji.name))
+    switch(typeof resolvable){
+        case 'function' :
+        case 'asyncFunction' :
+        case 'arrowFunction' :
+        return emojis.filter(resolvable)
+    }
+}
+
+function extractFrom(string){
     result = []
     for(i=0; i<string.length; i++){
         for(let emoji of emojis){
@@ -83,11 +79,11 @@ function extract(resolvable){
     return result
 }
 
-resolve.count   = emojis.length // return size of emoji array
-resolve.list    = emojis        // return all discord emojis
-resolve.get     = get           // get emoji by ID (1...1600+)
-resolve.has     = has           // check if emoji exist
-resolve.find    = find          // get first emojis found from string compare to all emoji props
-resolve.search  = search        // get emoji array from regex apply to emoji names
-resolve.extract = extract       // extract emoji array from text
-module.exports  = resolve       // apply previous functions, just an alias
+resolve.count           = emojis.length 
+resolve.list            = emojis        
+resolve.get             = get           
+resolve.has             = has           
+resolve.match           = math          
+resolve.matchAll        = matchAll        
+resolve.extractFrom     = extractFrom      
+module.exports          = resolve 

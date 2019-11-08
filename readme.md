@@ -15,25 +15,27 @@ console.log(nerd)
 ```
 ouput:
 ```json
-{
-    "name": "nerd",
-    "charcode": "\\uD83E\\uDD13",
-    "url": "https://discordapp.com/assets/e694b29603bee9f93dea4cad64502a38.svg",
-    "unicode": "🤓"
-}
+[
+    {
+        "name": "nerd",
+        "charcode": "\\uD83E\\uDD13",
+        "url": "https://discordapp.com/assets/e694b29603bee9f93dea4cad64502a38.svg",
+        "unicode": "🤓"
+    }
+]
 ```
 
 ## Functions
 
 ```js
-Unicodes(any)
-Unicodes.list               // all discord emojis array
-Unicodes.count              // size of emojis array
-Unicodes.get(num)           // get emoji by ID (1...1600+)
-Unicodes.has(string)        // check if emoji exist
-Unicodes.find(string)       // get first emoji found from string
-Unicodes.search(regex)      // get emoji array from regex
-Unicodes.extract(string)    // extract emoji array from text
+Unicodes(any)                   // call Unicodes.matchAll() method
+Unicodes.list                   // give all emojis array
+Unicodes.count                  // give size of emojis array
+Unicodes.get(string)            // get emoji by name, charcode or unicode
+Unicodes.has(string)            // check emoji by name, charcode or unicode
+Unicodes.match(any)             // get emoji by name, regex or callback filter
+Unicodes.matchAll(any)          // get emojis by name, regex or callback filter
+Unicodes.extractFrom(string)    // extract emoji array includes to given string
 ```
 
 ## Support 👍
