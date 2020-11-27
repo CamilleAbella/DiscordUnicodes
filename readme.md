@@ -1,4 +1,6 @@
-# Discord Unicodes
+# !!! DEPRECATED !!!
+
+## Discord Unicodes
 
 `npm install discord-unicodes --save`
 
